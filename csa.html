@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Kim Vaddi — The Architect Who Builds the Tools · Senior Cloud Solution Architect — Modernizing Infrastructure (IC4)</title>
+<meta name="description" content="The candidacy of Kim Vaddi for Senior Cloud Solution Architect — Modernizing Infrastructure (CAIP / CE&amp;S) — a customer-facing architect who builds the AI tools and repeatable IP that scale the field.">
+<style>
+  :root{
+    --bg:#eef3f9; --surface:#ffffff; --surface-2:#e6eef8;
+    --ink:#0a1124; --ink-soft:#3a4a6b; --ink-faint:#74849f;
+    --navy:#0a1124; --navy-2:#101a33;
+    --blue:#0a84ff; --blue-deep:#0066d6; --cyan:#50c8ff;
+    --amber:#e8943a; --amber-deep:#c4731a;
+    --line:#cdd9ea; --line-soft:#dde7f4;
+    --p1:#0f6cbd; --p1-bg:#e6f1fb;   /* Customer & Partner Trust */
+    --p2:#2f7a5a; --p2-bg:#e8f4ee;   /* Pipeline & Consumption */
+    --p3:#c4731a; --p3-bg:#f7efe2;   /* People: Model·Coach·Care */
+    --p4:#6c4cc4; --p4-bg:#efeafb;   /* AI-Led Strategy */
+    --shadow:0 1px 2px rgba(10,17,36,.06),0 10px 30px rgba(10,17,36,.08);
+    --shadow-lg:0 8px 24px rgba(10,17,36,.12),0 30px 60px rgba(10,17,36,.14);
+    --radius:16px; --radius-sm:11px; --maxw:1140px;
+    --font:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#070b16; --surface:#101a33; --surface-2:#0b1326;
+      --ink:#e6edf7; --ink-soft:#9fb0cc; --ink-faint:#647795;
+      --navy:#070b16; --navy-2:#101a33;
+      --line:#1d3056; --line-soft:#16273f;
+      --p1-bg:#0e2236; --p2-bg:#10261d; --p3-bg:#2a1f10; --p4-bg:#1a1430;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.5);
+      --shadow-lg:0 8px 24px rgba(0,0,0,.5),0 30px 60px rgba(0,0,0,.6);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased;font-size:16px}
+  h1,h2,h3,h4{line-height:1.18;margin:0;font-weight:700;letter-spacing:-.01em}
+  p{margin:0}
+  a{color:var(--blue);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:26px}
+
+  #progress{position:fixed;inset-block-start:0;inset-inline-start:0;height:3px;width:0;background:linear-gradient(90deg,var(--amber),var(--blue));z-index:60;transition:width .12s linear}
+  header.nav{position:sticky;inset-block-start:0;z-index:50;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(12px);border-block-end:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;gap:18px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.92rem;white-space:nowrap}
+  .brand .star{color:var(--amber)}
+  .brand small{display:block;font-weight:500;font-size:.66rem;color:var(--ink-faint);letter-spacing:.02em}
+  nav.links{margin-inline-start:auto;display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end}
+  nav.links a{font-size:.8rem;color:var(--ink-soft);padding:7px 10px;border-radius:8px;font-weight:600;transition:.15s}
+  nav.links a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.links a.active{color:var(--blue);background:var(--p1-bg)}
+
+  section{padding-block:66px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-block-end:14px}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--amber);border-radius:2px}
+  h2.sec{font-size:clamp(1.7rem,3.4vw,2.45rem);margin-block-end:8px}
+  .sec-sub{color:var(--ink-soft);font-size:1.06rem;max-width:66ch;margin-block-end:34px}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* HERO */
+  .hero{position:relative;color:#eaf1fb;overflow:hidden;background:radial-gradient(1200px 600px at 80% -10%,#0e2c52 0%,transparent 60%),linear-gradient(160deg,#070b16 0%,#101a33 55%,#060912 100%);padding-block:0}
+  .hero::after{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;background:radial-gradient(2px 2px at 20% 30%,rgba(80,200,255,.8),transparent),radial-gradient(2px 2px at 70% 20%,rgba(232,148,58,.7),transparent),radial-gradient(1.6px 1.6px at 40% 70%,rgba(234,241,251,.4),transparent),radial-gradient(1.6px 1.6px at 88% 60%,rgba(80,200,255,.6),transparent),radial-gradient(1.4px 1.4px at 12% 80%,rgba(234,241,251,.35),transparent)}
+  .hero-inner{position:relative;z-index:2;padding-block:80px 72px;max-width:var(--maxw);margin-inline:auto;padding-inline:26px}
+  .hero .tag{display:inline-flex;gap:9px;align-items:center;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(80,200,255,.4);padding:7px 14px;border-radius:999px;background:rgba(80,200,255,.08)}
+  .hero h1{font-size:clamp(2.2rem,5.6vw,3.9rem);margin-block:22px 6px;letter-spacing:-.025em}
+  .hero h1 .grad{background:linear-gradient(90deg,#7fd6ff,#0a84ff 55%,#e8943a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .lede{font-size:1.18rem;color:#c2d0e6;max-width:60ch}
+  .hero .who{font-size:1.02rem;color:#8fa1bd;margin-block-start:10px}
+  .hero .who a{color:var(--cyan)}
+  .narrative{margin-block-start:28px;border-inline-start:3px solid var(--amber);padding:6px 0 6px 18px;font-size:1.1rem;color:#eaf1fb;max-width:62ch;font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-block-start:32px}
+  .chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:9px 14px;border-radius:11px;font-size:.85rem;font-weight:600;color:#eaf1fb}
+  .chip b{color:var(--cyan);font-weight:800}
+  .hero-cta{margin-block-start:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.92rem;padding:13px 22px;border-radius:11px;cursor:pointer;border:1px solid transparent;transition:.18s;font-family:var(--font)}
+  .btn.primary{background:linear-gradient(180deg,#0a84ff,#0066d6);color:#fff;box-shadow:0 8px 24px rgba(10,132,255,.35)}
+  .btn.primary:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;border-color:rgba(234,241,251,.28);color:#eaf1fb}
+  .btn.ghost:hover{background:rgba(234,241,251,.08)}
+  .panel-note{font-size:.82rem;color:#8fa1bd;margin-block-start:22px;display:flex;align-items:center;gap:8px}
+
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card h3{font-size:1.12rem;margin-block-end:8px}
+  .card p{color:var(--ink-soft);font-size:.95rem}
+  .icon{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:1.15rem;font-weight:800;margin-block-end:14px}
+
+  /* FLAGSHIP banner */
+  .flagship{margin-block-start:30px;background:linear-gradient(135deg,#101a33,#1a1430);border:1px solid var(--p4);border-radius:var(--radius);padding:28px 30px;box-shadow:var(--shadow-lg);color:#eaf1fb;position:relative;overflow:hidden}
+  .flagship .fk{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#b69bff}
+  .flagship h3{font-size:1.5rem;margin-block:8px 6px}
+  .flagship p{color:#c8d2e8;font-size:1rem;max-width:78ch}
+  .flagship .meta{margin-block-start:14px;display:flex;flex-wrap:wrap;gap:9px}
+  .flagship .meta span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;font-size:.82rem;font-weight:600}
+
+  /* ARC */
+  .chapter{display:flex;gap:20px;align-items:flex-start}
+  .chapter+.chapter{margin-block-start:18px}
+  .chapter .num{flex:0 0 auto;width:58px;height:58px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:.95rem;color:#fff;background:linear-gradient(160deg,var(--blue),var(--blue-deep))}
+  .chapter.c5 .num{background:linear-gradient(160deg,var(--amber),var(--amber-deep))}
+  .chapter .body{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);flex:1}
+  .chapter .span{font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+  .chapter.c5 .span{color:var(--amber-deep)}
+  .chapter .thesis{color:var(--ink);font-weight:600;font-size:.96rem;margin-block:3px 6px}
+  .chapter ul{margin:8px 0 0;padding-inline-start:18px;color:var(--ink-soft);font-size:.93rem}
+  .chapter li{margin-block-end:4px}
+  .arc-thesis{margin-block-start:26px;background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#eaf1fb;border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow-lg)}
+  .arc-thesis .k{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+  .arc-thesis p{font-size:1.16rem;color:#dbe6f5;margin-block-start:8px}
+  .arc-thesis .flow{display:flex;flex-wrap:wrap;gap:10px;margin-block-start:16px;font-weight:700;font-size:.9rem}
+  .arc-thesis .flow span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:6px 13px;border-radius:999px}
+  .arc-thesis .flow .now{background:rgba(232,148,58,.18);border-color:rgba(232,148,58,.5);color:#ffd9a8}
+
+  /* HOW I LEAD */
+  .principle .icon{background:var(--p1-bg);color:var(--blue)}
+  .mcc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-block-end:20px}
+  .mcc .m{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border-block-start:4px solid var(--mc)}
+  .mcc .m .mk{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mc)}
+  .mcc .m h3{font-size:1.18rem;margin-block:5px 7px}
+  .mcc .m p{color:var(--ink-soft);font-size:.93rem}
+  .lead-quote{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#eaf1fb;border-radius:var(--radius);padding:34px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;margin-block-start:22px}
+  .lead-quote::before{content:"\201C";position:absolute;font-size:9rem;color:rgba(80,200,255,.18);inset-block-start:-30px;inset-inline-start:14px;font-family:Georgia,serif}
+  .lead-quote q{font-size:1.55rem;font-weight:700;quotes:none;display:block;position:relative;z-index:1;letter-spacing:-.01em}
+  .lead-quote .by{margin-block-start:14px;color:#8fa1bd;font-size:.95rem}
+  .diff{margin-block-start:22px;border:1px solid var(--amber);background:linear-gradient(180deg,var(--surface),var(--p3-bg));border-radius:var(--radius);padding:26px}
+  .diff .lbl{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-deep)}
+  .diff p.big{font-size:1.24rem;font-weight:700;margin-block:8px 0;letter-spacing:-.01em}
+  .tt-toggle{margin-block-start:16px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.84rem;color:var(--blue);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:8px 14px;cursor:pointer;font-family:var(--font)}
+  .tt-toggle:hover{border-color:var(--blue)}
+  .tt-toggle .caret{transition:transform .2s}
+  .tt-toggle[aria-expanded="true"] .caret{transform:rotate(90deg)}
+  .tt-body{display:none;margin-block-start:14px;border-inline-start:3px solid var(--blue);padding:4px 0 4px 16px;color:var(--ink-soft);font-size:.97rem;font-style:italic}
+  .tt-body.open{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+  /* ENGINE */
+  .engine{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow-lg)}
+  .northstar{display:flex;align-items:center;gap:18px;justify-content:center;text-align:center;background:linear-gradient(120deg,var(--p3-bg),var(--surface-2));border:1px solid var(--amber);border-radius:16px;padding:22px 26px}
+  .northstar .bigstar{font-size:2.4rem;color:var(--amber-deep);filter:drop-shadow(0 2px 6px rgba(232,148,58,.4))}
+  .northstar .ns-txt{text-align:start}
+  .northstar .ns-k{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-deep)}
+  .northstar h3{font-size:1.35rem;margin-block:2px 3px}
+  .northstar p{color:var(--ink-soft);font-size:.92rem;max-width:66ch}
+  .ladder{text-align:center;color:var(--ink-faint);font-size:.8rem;font-weight:700;letter-spacing:.03em;margin-block:14px 6px;text-transform:uppercase}
+  .ladder span{color:var(--amber-deep)}
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-block-start:6px}
+  .pillar{position:relative;cursor:pointer;border-radius:14px;padding:20px 18px;border:1.5px solid var(--line);background:var(--surface-2);transition:.18s;text-align:start;font-family:var(--font);overflow:hidden}
+  .pillar::before{content:"";position:absolute;inset-block-start:0;inset-inline:0;height:4px;background:var(--pc)}
+  .pillar:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .pillar.active{border-color:var(--pc);background:var(--pcbg);box-shadow:var(--shadow)}
+  .pillar .pn{font-size:.7rem;font-weight:800;color:var(--pc);letter-spacing:.06em}
+  .pillar h4{font-size:1.02rem;margin-block:7px 6px;color:var(--ink)}
+  .pillar .tagline{font-size:.83rem;color:var(--ink-soft)}
+  .pillar .more{font-size:.74rem;font-weight:700;color:var(--pc);margin-block-start:12px;display:inline-flex;gap:5px;align-items:center}
+  .pdetail{margin-block-start:18px;border-radius:16px;border:1px solid var(--line);background:var(--surface-2);padding:24px;border-inline-start:5px solid var(--pc-active,var(--blue))}
+  .pdetail .pd-k{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pc-active,var(--blue))}
+  .pdetail h3{font-size:1.32rem;margin-block:4px 4px}
+  .pdetail .pd-tag{color:var(--ink-soft);font-size:1rem;margin-block-end:14px}
+  .pdetail ul{margin:0;padding-inline-start:20px;color:var(--ink-soft);font-size:.95rem;columns:2;column-gap:34px}
+  .pdetail li{margin-block-end:7px;break-inside:avoid}
+  .pdetail .meet{margin-block-start:16px;font-size:.9rem;background:var(--surface);border:1px dashed var(--line);border-radius:11px;padding:13px 15px;color:var(--ink-soft)}
+  .pdetail .meet b{color:var(--ink)}
+  .pdetail .jd{margin-block-start:10px;font-size:.8rem;color:var(--ink-faint);font-style:italic}
+
+  /* VOICES */
+  .voice{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .voice .mk{font-size:2.4rem;line-height:.6;color:var(--amber);font-family:Georgia,serif;height:22px}
+  .voice q{quotes:none;font-size:1rem;color:var(--ink);font-weight:500;display:block;margin-block:8px 16px;flex:1}
+  .voice .who{display:flex;align-items:center;gap:12px;margin-block-start:auto}
+  .voice .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:.95rem;flex:0 0 auto}
+  .voice .nm{font-weight:700;font-size:.92rem}
+  .voice .rl{font-size:.79rem;color:var(--ink-soft)}
+  .voice-wide{margin-block-start:18px;flex-direction:row;align-items:flex-start;gap:24px}
+  .voice-wide .mk{flex:0 0 auto;font-size:3rem}
+  .voice-wide q{margin-block:0;font-size:1.06rem;flex:1}
+  .voice-wide .who{margin-block-start:0;flex:0 0 auto;min-width:230px;align-self:center}
+  .badge2{margin-inline-start:auto;font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--p4-bg);color:var(--p4)}
+  @media(max-width:640px){.voice-wide{flex-direction:column}}
+
+  /* WHY ME */
+  .proof-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{display:flex;gap:13px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 16px;box-shadow:var(--shadow)}
+  .pi .ck{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:var(--p2-bg);color:var(--p2);display:grid;place-items:center;font-weight:800;font-size:.95rem}
+  .pi .txt{font-size:.92rem;color:var(--ink)} .pi .txt b{font-weight:700}
+  .pi .txt .req{display:block;font-size:.74rem;color:var(--ink-faint);margin-block-start:3px;font-style:italic}
+  .honest{margin-block-start:22px;border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .honest .hk{font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-deep)}
+  .honest h3{font-size:1.18rem;margin-block:6px 8px}
+  .honest p{color:var(--ink-soft);font-size:.95rem}
+  .honest ul{margin:10px 0 0;padding-inline-start:18px;color:var(--ink-soft);font-size:.93rem}
+  .honest li{margin-block-end:5px}
+  .conviction{margin-block-start:22px;background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#eaf1fb;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-lg)}
+  .conviction .k{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+  .conviction p{font-size:1.1rem;color:#c2d0e6;margin-block-start:10px;max-width:76ch}
+  .conviction p .hl{color:#fff;font-weight:700}
+
+  /* 30/60/90 */
+  .tabs{display:flex;gap:10px;margin-block-end:22px;flex-wrap:wrap}
+  .tab{flex:1;min-width:200px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer;text-align:start;font-family:var(--font);transition:.18s}
+  .tab:hover{border-color:var(--blue)}
+  .tab.active{border-color:var(--blue);background:var(--p1-bg);box-shadow:var(--shadow)}
+  .tab .days{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+  .tab .ttl{font-size:1.08rem;font-weight:700;margin-block:3px 2px;color:var(--ink)}
+  .tab .mot{font-size:.84rem;color:var(--ink-soft)}
+  .tpanel{display:none} .tpanel.show{display:block;animation:fade .35s ease}
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .lane{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .lane .lk{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--p1);margin-block-end:10px}
+  .lane.l2 .lk{color:var(--p3)} .lane.l3 .lk{color:var(--p2)}
+  .lane ul{margin:0;padding-inline-start:17px;color:var(--ink-soft);font-size:.92rem}
+  .lane li{margin-block-end:6px}
+  .succ{margin-block-start:16px;background:linear-gradient(160deg,var(--p2-bg),var(--surface));border:1px solid var(--p2);border-radius:14px;padding:16px 20px;font-size:.95rem;color:var(--ink)}
+  .succ b{color:var(--p2)}
+
+  /* RECOGNITION */
+  .sig{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+  .sig .si{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.2rem;color:#fff}
+  .sig h3{font-size:1.02rem;margin-block-end:3px}
+  .sig p{color:var(--ink-soft);font-size:.89rem}
+  .sig a{font-weight:700}
+
+  /* CLOSE */
+  .close{background:radial-gradient(900px 400px at 50% -20%,#0e2c52,transparent 60%),linear-gradient(160deg,#070b16,#060912);color:#eaf1fb;border-radius:24px;padding:54px 40px;text-align:center;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .close .bigstar{font-size:2.2rem;color:var(--amber)}
+  .close h2{font-size:clamp(1.6rem,4vw,2.5rem);margin-block:10px 12px}
+  .close .grad{background:linear-gradient(90deg,#7fd6ff,#0a84ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .close p{color:#c2d0e6;font-size:1.1rem;max-width:64ch;margin-inline:auto}
+  .close .sig2{margin-block-start:22px;font-size:.9rem;color:#8fa1bd}
+  .close .sig2 a{color:var(--cyan)}
+
+  footer{padding-block:30px;text-align:center;color:var(--ink-faint);font-size:.8rem}
+  .assume{max-width:var(--maxw);margin:0 auto;padding:16px 26px;color:var(--ink-faint);font-size:.78rem;border-block-start:1px solid var(--line);line-height:1.5}
+
+  @media (max-width:920px){
+    nav.links{display:none}
+    .g3,.g2,.pillars,.proof-list,.lanes,.mcc{grid-template-columns:1fr}
+    .pdetail ul{columns:1}
+  }
+  @media print{
+    #progress,header.nav,.hero-cta,.tt-toggle,.tab{display:none!important}
+    body{background:#fff;font-size:11px}
+    .reveal{opacity:1!important;transform:none!important}
+    .tt-body,.tpanel{display:block!important}
+    section{padding-block:18px;break-inside:avoid}
+    .card,.lane,.sig,.chapter .body,.voice{box-shadow:none}
+    .hero,.close,.arc-thesis,.lead-quote,.conviction,.flagship{color:#0a1124;background:#fff!important;border:1px solid #dbe3ef}
+    .hero h1 .grad,.close .grad{color:#0066d6}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="star">◆</span><span>Kim Vaddi<small>Candidacy · Sr Cloud Solution Architect — Modernizing Infrastructure (IC4)</small></span></div>
+    <nav class="links">
+      <a href="#arc">The Arc</a>
+      <a href="#lead">How I Work</a>
+      <a href="#engine">The Engine</a>
+      <a href="#voices">In Their Words</a>
+      <a href="#meet">Meet Kim</a>
+      <a href="#why">Why Me</a>
+      <a href="#plan">First 90</a>
+      <a href="#close">Close</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0">
+  <div class="hero-inner">
+    <span class="tag">◆ Candidacy · Senior Cloud Solution Architect — Modernizing Infrastructure · CAIP / CE&amp;S · IC4</span>
+    <h1>The architect who<br><span class="grad">builds the tools.</span></h1>
+    <p class="lede">This role wants a Sr CSA who modernizes infrastructure at scale, builds repeatable IP for the field, and "drives building AI tools to increase operational efficiencies." That's not aspirational for me — it's what I already do. I migrate Windows/Linux estates to Azure with IaC, and I build the AI agents that make the field faster. I've been a Microsoft Cloud Solution Architect. I'd be coming home — sharper.</p>
+    <p class="who">Kim Vaddi · Sr Solution Engineer / former Sr Cloud Solution Architect · Oil/Gas &amp; Energy · Houston, TX · <a href="https://www.linkedin.com/in/kimvaddi" target="_blank" rel="noopener">linkedin.com/in/kimvaddi</a></p>
+    <div class="narrative">Find the pattern, build the solution, turn it into reusable IP, skill the field, carry the customer's voice back to Engineering. That loop is the job — and it's the loop I run.</div>
+    <div class="chips">
+      <span class="chip"><b>15+</b> enterprise migrations</span>
+      <span class="chip"><b>Built</b> AI tools for the field (MSX agent, CERAWeek)</span>
+      <span class="chip"><b>Terraform</b> / IaC native</span>
+      <span class="chip"><b>40%</b> perf gains via ADS</span>
+      <span class="chip"><b>M.S.</b> Artificial Intelligence</span>
+      <span class="chip"><b>2,900+</b> Azure User Group (Co-Chair)</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn primary" href="#engine">How I'd deliver ▸</a>
+      <a class="btn ghost" href="#why">Why me for this role</a>
+    </div>
+    <p class="panel-note">◆ Not a stretch — a strong match. A Sr CSA returning to architecture with an AI-builder's edge.</p>
+  </div>
+</section>
+
+<!-- ARC -->
+<section id="arc">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">The Arc</span>
+      <h2 class="sec">Builder → Advisor → Seller → Agent-builder → Leader</h2>
+      <p class="sec-sub">Every role moved me closer to two things: the customer's hardest problem and the technical depth to solve it. This architect role isn't a left turn — it's the convergence point where infrastructure migration, IaC, and AI-tool building all come together.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="chapter c1">
+        <div class="num">2007<br>2010</div>
+        <div class="body">
+          <div class="span">Continental Airlines · Sr. Database Administrator</div>
+          <div class="thesis">Reliability is a promise you make to people, not a metric.</div>
+          <ul>
+            <li>Improved enterprise system performance <b>25%</b> through database optimization, in a zero-downtime airline environment.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chapter c2">
+        <div class="num">2010<br>2021</div>
+        <div class="body">
+          <div class="span">Anthem Inc. · Sr. Database Administrator → Steering Committee</div>
+          <div class="thesis">Operator to advisor — shaping platforms, not just running them.</div>
+          <ul>
+            <li>Architected HA for Azure SQL &amp; AWS RDS; cut data-platform downtime <b>50%</b>.</li>
+            <li>Ran mission-critical healthcare analytics under compliance; sat on the platform-governance steering committee.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chapter c3">
+        <div class="num">2020<br>2022</div>
+        <div class="body">
+          <div class="span">IBM · Cloud Migration Architect → JPMorgan Chase · VP, Software Engineer</div>
+          <div class="thesis">Carried the transformation message into the enterprise — and the executive room.</div>
+          <ul>
+            <li>Executed cloud migration across <b>15+</b> enterprise clients, embedding SRE principles.</li>
+            <li>As VP, improved service delivery <b>30%</b>; presented reliability to executive leadership.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chapter c4">
+        <div class="num">2022<br>2024</div>
+        <div class="body">
+          <div class="span">Microsoft · Sr. Cloud Solution Architect</div>
+          <div class="thesis">The trusted technical advisor customers call first.</div>
+          <ul>
+            <li>Ran Architecture Design Sessions improving system performance <b>40%</b>.</li>
+            <li>Championed Upstream/Mid/Downstream modernization — <b>25%</b> op-cost reduction; observability + IaC (Terraform).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chapter c5">
+        <div class="num">2024<br>Now</div>
+        <div class="body">
+          <div class="span">Microsoft · Sr. Solution Engineer / Sr. Technical Specialist — Oil/Gas &amp; Energy</div>
+          <div class="thesis">Carried the customer's outcome — and started building the AI tools that make delivery faster.</div>
+          <ul>
+            <li>Directed executive strategy engagements; secured <b>$4.6M</b> in new Azure consumption across a 19-account portfolio.</li>
+            <li><b>Built an AI agent</b> to navigate accounts and mine MSX for opportunities — flagged by AMER SE&amp;O as a foundation to extend to Corp GDC Ops.</li>
+            <li>Shipped the <b>CERAWeek Wayfinder</b> agentic app in ~2 weeks; events team is templatizing it for future events.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal arc-thesis">
+      <div class="k">The throughline</div>
+      <p>I didn't change careers five times — I climbed one ladder, each rung adding depth: reliability, migration, enterprise architecture, customer trust, and now AI tooling. This role is where every rung converges: a senior architect who modernizes infrastructure and builds the AI that scales it.</p>
+      <div class="flow"><span>DBA / reliability</span><span>Migration architect</span><span>Enterprise VP</span><span>Cloud Solution Architect</span><span>AI-tool builder</span><span class="now">▸ Sr CSA, Modernizing Infra (this role)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="lead" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">How I Work</span>
+      <h2 class="sec">Find the pattern. Build the solution. Scale it to the field.</h2>
+      <p class="sec-sub">This role's loop is explicit in the JD: partner with customers, identify patterns, build solutions, turn them into repeatable IP, skill the field, and carry the customer's voice back to Engineering. That's not a job description I'm reaching for — it's the way I already operate.</p>
+    </div>
+
+    <div class="mcc reveal">
+      <div class="m" style="--mc:var(--p1)">
+        <div class="mk">Architect</div>
+        <h3>Design for the customer's whole estate</h3>
+        <p>I start from the customer's cloud portfolio, IT priorities, and success measures — then design Azure + hybrid solutions across Windows, Linux, networking, storage, and IaC. 15+ enterprise migrations; 40% perf gains through Architecture Design Sessions.</p>
+      </div>
+      <div class="m" style="--mc:var(--p4)">
+        <div class="mk">Build</div>
+        <h3>Turn the pattern into AI-powered IP</h3>
+        <p>The JD asks to "drive building AI tools to increase operational efficiencies." I do exactly that — I built an agent that mines MSX for opportunities (AMER SE&amp;O wants to scale it) and shipped the CERAWeek Wayfinder agentic app, now a reusable template.</p>
+      </div>
+      <div class="m" style="--mc:var(--p3)">
+        <div class="mk">Scale</div>
+        <h3>Skill the field, carry the voice back</h3>
+        <p>I embed best practices and skill the community — Co-Chair of a 2,900-member Azure User Group, BAM Technical Education Liaison — and surface real field blockers (e.g., diagnosing WDAC on managed devices) back toward the product teams that can fix them.</p>
+      </div>
+    </div>
+
+    <div class="grid g3 reveal">
+      <div class="card principle"><div class="icon">◆</div><h3>Unblock, then generalize</h3><p>Solve the customer's blocker first; then turn the fix into IP so the next ten teams never hit it.</p></div>
+      <div class="card principle"><div class="icon">⚙</div><h3>Automate the repeatable</h3><p>If I've done it twice by hand, I build the tool. IaC, agents, and automation are how one architect scales to many.</p></div>
+      <div class="card principle"><div class="icon">⚔</div><h3>Ground every claim</h3><p>Named blocker, named fix, verifiable fact. Candid guidance even when it points away from a Microsoft SKU — that's what earns trust.</p></div>
+    </div>
+
+    <div class="reveal lead-quote">
+      <q>If I've solved it once for a customer, my job isn't done until I've turned it into something the whole field can reuse.</q>
+      <div class="by">— My operating principle, proven across 15+ enterprise migrations and the AI tools I've shipped for the field.</div>
+    </div>
+
+    <div class="reveal diff">
+      <div class="lbl">My differentiator</div>
+      <p class="big">Most CSAs architect the solution. I also build the AI tool that turns one solution into field-wide leverage.</p>
+      <button class="tt-toggle" aria-expanded="false"><span class="caret">▸</span> Show the talk track</button>
+      <div class="tt-body">"This role explicitly wants someone who drives building AI tools to increase operational efficiencies — most candidates will point at certifications and migration projects. I have those: M.S. in AI, Terraform/IaC, 15+ enterprise migrations, ADS-driven 40% perf gains. But the differentiator is that I ship the tooling. I built an agent that navigates accounts and mines MSX for opportunities, which AMER SE&amp;O wants to extend to Corp GDC Ops, and a customer-grade agentic app for CERAWeek in two weeks that's now a reusable template. I don't just architect for one customer — I build the IP and automation that make the next hundred deliveries faster. That's the exact 'find the pattern, build the solution, scale the field' loop this job is built around."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINE -->
+<section id="engine">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">The Engine</span>
+      <h2 class="sec">Four pillars — mapped to the role's responsibilities</h2>
+      <p class="sec-sub">Not a values poster — a delivery model aligned to the JD's core accountabilities. Tap a pillar to see the proof and what it looks like in the role.</p>
+    </div>
+
+    <div class="reveal engine">
+      <div class="northstar">
+        <div class="bigstar">◆</div>
+        <div class="ns-txt">
+          <div class="ns-k">North Star</div>
+          <h3>Turn every customer solution into repeatable IP and AI tooling the whole field can reuse.</h3>
+          <p>One architect can win one migration. An architect who builds the pattern, the automation, and the AI tool behind it makes every delivery after it faster — and that's how you modernize infrastructure at CAIP scale.</p>
+        </div>
+      </div>
+      <div class="ladder">Customer pattern → <span>architected solution</span> → repeatable IP &amp; automation → field skilling → voice of customer to Engineering</div>
+
+      <div class="pillars">
+        <button class="pillar active" data-p="0" style="--pc:var(--p1);--pcbg:var(--p1-bg)">
+          <div class="pn">PILLAR 01</div><h4>Infra Modernization</h4><div class="tagline">Migrate &amp; architect at scale.</div><div class="more">Explore ▸</div>
+        </button>
+        <button class="pillar" data-p="1" style="--pc:var(--p4);--pcbg:var(--p4-bg)">
+          <div class="pn">PILLAR 02</div><h4>AI Tools &amp; Automation</h4><div class="tagline">Build the efficiency engine.</div><div class="more">Explore ▸</div>
+        </button>
+        <button class="pillar" data-p="2" style="--pc:var(--p2);--pcbg:var(--p2-bg)">
+          <div class="pn">PILLAR 03</div><h4>Repeatable IP &amp; Skilling</h4><div class="tagline">Scale solutions to the field.</div><div class="more">Explore ▸</div>
+        </button>
+        <button class="pillar" data-p="3" style="--pc:var(--p3);--pcbg:var(--p3-bg)">
+          <div class="pn">PILLAR 04</div><h4>Trusted Advisor &amp; VoC</h4><div class="tagline">Voice of customer to Engineering.</div><div class="more">Explore ▸</div>
+        </button>
+      </div>
+
+      <div class="pdetail" id="pdetail"></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section id="voices" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">In Their Words</span>
+      <h2 class="sec">A senior architect who already runs this exact loop</h2>
+      <p class="sec-sub">Five on-the-record endorsements — strategy directors, GTM managers, sponsorship leads, and AMER SE&amp;O / field-community partners. Verbatim. The themes — builds AI tools for the field, trusted technical advisor, delivers under pressure, turns work into reusable assets — are the themes of this job.</p>
+    </div>
+
+    <div class="reveal voice voice-wide">
+      <div class="mk">&ldquo;</div>
+      <q>Kim is one of the most resourceful and dependable technical talents on our Houston team. The CERAWeek Wayfinder is the headline story… she exceeded expectations delivering a phone-friendly agentic experience with functionality we hadn't even scoped… The events team is now turning it into a template for future events, which is a real measure of impact. Kim leaned in, moved fast, and thought creatively under pressure.</q>
+      <div class="who"><div class="av" style="background:linear-gradient(160deg,var(--p1),var(--blue-deep))">RS</div><div><div class="nm">Rob Schapiro</div><div class="rl">Sr Director, Business Strategy</div></div><span class="badge2">Apr 2026</span></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-block-start:18px">
+      <div class="voice">
+        <div class="mk">&ldquo;</div>
+        <q>Kim demonstrated exceptional initiative and impact during CERAWeek by stepping outside of her core responsibilities to design and build an agent within a very compressed timeline… a strong, tangible example of Microsoft "using Microsoft" to solve real problems. Kim consistently shows a willingness to stretch, take on new challenges, and deliver with excellence—making her a tremendous asset to the team.</q>
+        <div class="who"><div class="av" style="background:linear-gradient(160deg,var(--p3),var(--amber-deep))">MG</div><div><div class="nm">Maddy Gigli</div><div class="rl">Sponsorship Lead</div></div><span class="badge2">May 2026</span></div>
+      </div>
+      <div class="voice">
+        <div class="mk">&ldquo;</div>
+        <q>Beyond her technical contributions, Kim shows up as a true partner—collaborative, solution-oriented, and always willing to test, iterate, and push things forward. That combination of partnership + execution + innovation is rare, and it's a big reason why the work we're doing together is gaining traction.</q>
+        <div class="who"><div class="av" style="background:linear-gradient(160deg,var(--p2),#1f5a40)">KD</div><div><div class="nm">Karri Dunn-Gruver</div><div class="rl">Director, GTM Manager</div></div><span class="badge2">Apr 2026</span></div>
+      </div>
+      <div class="voice">
+        <div class="mk">&ldquo;</div>
+        <q>The agent Kim has built to navigate accounts and mine MSX for opportunities is thoughtful, highly practical, and grounded in real seller needs—it reflects both deep technical skill and a strong understanding of field realities… it has the potential to serve as a foundation that AMER SE&amp;O can build upon and even extend into broader adoption through Corp GDC Ops.</q>
+        <div class="who"><div class="av" style="background:linear-gradient(160deg,var(--p4),#4a32a0)">◆</div><div><div class="nm">AMER SE&amp;O Program Partner</div><div class="rl">Field programs &amp; pilots</div></div><span class="badge2">2026</span></div>
+      </div>
+      <div class="voice">
+        <div class="mk">&ldquo;</div>
+        <q>Kim consistently demonstrates strong technical curiosity, field empathy, and a genuine commitment to improving seller and Solution Engineer effectiveness… During Orbex testing, she quickly diagnosed WDAC constraints on managed devices, clearly explained the root cause, and worked toward a viable workaround while keeping testers informed… She is viewed as a credible, approachable partner by the technical field community.</q>
+        <div class="who"><div class="av" style="background:linear-gradient(160deg,#0a84ff,#50c8ff)">◎</div><div><div class="nm">Technical Field Community Partner</div><div class="rl">Tooling pilots &amp; SE excellence</div></div><span class="badge2">2026</span></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-block-start:18px">
+      <div class="voice voice-wide" style="border-color:var(--amber)">
+        <div class="mk" style="color:var(--amber-deep)">&ldquo;</div>
+        <q><b>What a Sr Director most values, in three lines:</b> Agentic AI delivery under pressure — turning a two-week scramble into a reusable, customer-grade asset (CERAWeek Wayfinder). Trusted technical advisor — patient, candid coaching on Power Apps vs. Azure trade-offs so business owners can self-serve. Houston team glue — equally credible with O&amp;G customers, partners, and student/community audiences.</q>
+        <div class="who"><div class="av" style="background:linear-gradient(160deg,var(--p1),var(--blue-deep))">RS</div><div><div class="nm">Rob Schapiro</div><div class="rl">Sr Director, Business Strategy</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET KIM -->
+<section id="meet">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Meet Kim</span>
+      <h2 class="sec">The human behind the candidacy</h2>
+      <p class="sec-sub">Numbers and endorsements tell you what I've done. This is who I am — and why this architect role is where my whole career points.</p>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start">
+      <div style="text-align:center">
+        <div aria-label="Kim Vaddi" style="width:150px;height:150px;border-radius:50%;display:grid;place-items:center;font-size:3rem;font-weight:800;color:#fff;background:linear-gradient(150deg,#0a84ff,#6c4cc4 60%,#e8943a);box-shadow:0 0 0 4px var(--surface),0 0 0 6px var(--amber),var(--shadow-lg);letter-spacing:.04em">KV</div>
+        <div style="margin-block-start:14px;font-weight:700;font-size:.95rem">Kim Vaddi</div>
+        <div style="font-size:.82rem;color:var(--ink-soft)">Houston, TX</div>
+      </div>
+      <div>
+        <div class="grid g2" style="gap:12px">
+          <div class="pi"><div class="ck" style="background:var(--p1-bg);color:var(--p1)">◆</div><div class="txt"><b>17+ years, four industries.</b> Energy, Finance, Healthcare &amp; Aviation — I've seen how technology lands in very different worlds.</div></div>
+          <div class="pi"><div class="ck" style="background:var(--p4-bg);color:var(--p4)">✦</div><div class="txt"><b>M.S. in Artificial Intelligence.</b> Credentialed for the era I'd coach my team into — and I build with it, not just talk about it.</div></div>
+          <div class="pi"><div class="ck" style="background:var(--p3-bg);color:var(--p3)">◎</div><div class="txt"><b>Houston tech-community builder.</b> Co-Chair of a 2,900+ member Azure User Group; mentor to students through Tex-E and G-Unity/HISD.</div></div>
+          <div class="pi"><div class="ck" style="background:var(--p2-bg);color:var(--p2)">✓</div><div class="txt"><b>Bilingual &amp; bridge-builder.</b> English &amp; Vietnamese; equally at home with O&amp;G executives, partners, and student audiences.</div></div>
+        </div>
+        <div style="margin-block-start:18px;background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#eaf1fb;border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow-lg)">
+          <div style="font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)">What drives me</div>
+          <p style="font-size:1.08rem;color:#dbe6f5;margin-block-start:10px;max-width:74ch">I love the moment a hard technical problem becomes someone else's superpower — when a seller, a customer, or a student suddenly sees what's possible and runs with it. For 17 years I've chased that moment one person at a time. Leading a team is how I make it happen at scale.</p>
+        </div>
+        <div style="margin-block-start:18px;display:flex;flex-wrap:wrap;gap:10px">
+          <span class="chip" style="background:var(--surface);border-color:var(--line);color:var(--ink)"><b style="color:var(--blue)">◆</b> Builder</span>
+          <span class="chip" style="background:var(--surface);border-color:var(--line);color:var(--ink)"><b style="color:var(--p3)">◎</b> Houston team glue</span>
+          <span class="chip" style="background:var(--surface);border-color:var(--line);color:var(--ink)"><b style="color:var(--p2)">⛽</b> Energy-tech native</span>
+          <span class="chip" style="background:var(--surface);border-color:var(--line);color:var(--ink)"><b style="color:var(--p4)">✦</b> AI-first coach</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section id="why">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Why Me</span>
+      <h2 class="sec">Why I'm a strong match — mapped to the JD</h2>
+      <p class="sec-sub">This isn't a stretch role for me — it's a return to architecture with an edge most CSAs don't have. The role asks for 4+ years (8+ preferred) in architecture/consulting/cloud infra; I bring 17, including a prior Microsoft Cloud Solution Architect tour. Every claim below ties to a line in the posting.</p>
+    </div>
+
+    <div class="reveal proof-list">
+      <div class="pi"><div class="ck">✓</div><div class="txt"><b>I modernize infrastructure at scale.</b> 15+ enterprise migrations; Windows/Linux/networking/storage; on-prem-to-Azure and greenfield Azure builds.<span class="req">JD: deep migrations of Windows, Linux &amp; infrastructure; design complex Azure &amp; hybrid solutions.</span></div></div>
+      <div class="pi"><div class="ck">✓</div><div class="txt"><b>I build the AI tools this role calls for.</b> Authored the MSX opportunity-mining agent; shipped CERAWeek Wayfinder in 2 weeks.<span class="req">JD: drive building AI tools to increase operational efficiencies; build automation/solutions.</span></div></div>
+      <div class="pi"><div class="ck">✓</div><div class="txt"><b>I'm IaC-native.</b> Terraform to design, build, test, and deploy infrastructure; observability and Azure Landing Zones in production.<span class="req">JD: experience using Infrastructure as Code across application environments.</span></div></div>
+      <div class="pi"><div class="ck">✓</div><div class="txt"><b>I create repeatable IP and skill the field.</b> Co-Chair of a 2,900+ Azure community; BAM Education Liaison; templatized assets.<span class="req">JD: develop high-quality repeatable IP; build skilling; influence via communities.</span></div></div>
+      <div class="pi"><div class="ck">✓</div><div class="txt"><b>I'm a trusted advisor and Voice of Customer.</b> Named "trusted technical advisor"; diagnosed WDAC field blockers and drove fixes upstream.<span class="req">JD: trusted advisor; Voice of the Customer; influence the product roadmap with Engineering.</span></div></div>
+      <div class="pi"><div class="ck">✓</div><div class="txt"><b>I'm credentialed and certified.</b> M.S. in Artificial Intelligence; Azure cloud certifications (Credly); continuous-learning track record.<span class="req">JD: technical certification in cloud; aptitude to adopt new tech and stay current.</span></div></div>
+    </div>
+
+    <div class="reveal honest">
+      <div class="hk">Straight talk — where I'm strong, where I'd ramp</div>
+      <h3>This role fits my profile. Here's the honest read.</h3>
+      <p>I clear the bar: 17 years in architecture/consulting/cloud infra (8+ preferred), a prior Microsoft Cloud Solution Architect tour, IaC, and a portfolio of enterprise migrations. Two honest notes:</p>
+      <ul>
+        <li><b>The title says "Director," the body says IC4 Senior CSA.</b> I'm targeting it as the individual-contributor architect role it is — exactly where my hands-on depth lives.</li>
+        <li><b>My recent tour leaned sales-engineering;</b> I'd re-anchor fast on deep delivery IP. The migration and IaC muscles are intact — I'd refresh the newest Azure migration tooling in my first weeks.</li>
+        <li><b>My differentiator is rare here:</b> most CSAs don't ship AI tools. I do — and this JD explicitly wants it. That's where I'd create outsized value on day one.</li>
+        <li><b>Security screening:</b> I meet Cloud Background Check requirements and have worked in compliance-bound (healthcare/financial) environments.</li>
+      </ul>
+    </div>
+
+    <div class="reveal conviction">
+      <div class="k">My conviction</div>
+      <p>Give me a customer's hardest migration and I'll architect the solution, <span class="hl">unblock it</span>, and then do the thing most architects skip — <span class="hl">turn it into repeatable IP and an AI tool the whole field reuses</span>. I bring 17 years of infrastructure depth, a prior CSA tour, and the rare habit of <span class="hl">building the tooling, not just the slideware</span>. This role is the convergence of everything I do best.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 30/60/90 -->
+<section id="plan" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">First 90 Days</span>
+      <h2 class="sec">First 90 days — ramp, deliver, scale</h2>
+      <p class="sec-sub">An architect's onboarding: learn the priorities, land a real customer win, then turn it into reusable IP. Tap a phase.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="tabs">
+        <button class="tab active" data-t="0"><div class="days">Days 0–30</div><div class="ttl">Learn &amp; Anchor</div><div class="mot">CAIP priorities, stakeholders, stack</div></button>
+        <button class="tab" data-t="1"><div class="days">Days 31–60</div><div class="ttl">Deliver &amp; Unblock</div><div class="mot">First customer win, first tool</div></button>
+        <button class="tab" data-t="2"><div class="days">Days 61–90</div><div class="ttl">Scale &amp; Influence</div><div class="mot">Repeatable IP, field skilling, VoC</div></button>
+      </div>
+
+      <div class="tpanel show" data-tp="0">
+        <div class="lanes">
+          <div class="lane l1"><div class="lk">Learn</div><ul><li>Map CAIP's "modernize infrastructure" priorities and the top customer patterns.</li><li>Refresh on the latest Azure migration tooling &amp; reference architectures.</li><li>Pass the Cloud Background Check; complete required security screening.</li></ul></div>
+          <div class="lane l2"><div class="lk">Connect</div><ul><li>Build relationships across CE&amp;S stakeholders and Engineering contacts.</li><li>Meet the field communities I'd skill and the partners who deliver.</li></ul></div>
+          <div class="lane l3"><div class="lk">Customer</div><ul><li>Shadow live migrations; identify the first stalled customer I can unblock.</li><li>Catalog the most common blockers worth turning into IP.</li></ul></div>
+        </div>
+        <div class="succ"><b>30-day signal:</b> I can name CAIP's top infra-modernization patterns, the key stakeholders, and the first customer blocker I'll solve.</div>
+      </div>
+
+      <div class="tpanel" data-tp="1">
+        <div class="lanes">
+          <div class="lane l1"><div class="lk">Deliver</div><ul><li>Architect and unblock a real customer migration end-to-end.</li><li>Design the Azure + hybrid solution with IaC from day one.</li></ul></div>
+          <div class="lane l2"><div class="lk">Build</div><ul><li>Ship the first automation/AI tool that removes a repeated manual step.</li><li>Prototype an efficiency agent against a known delivery bottleneck.</li></ul></div>
+          <div class="lane l3"><div class="lk">Customer</div><ul><li>Land one visible win where I accelerated a customer's migration.</li><li>Capture the pattern and blockers for reuse.</li></ul></div>
+        </div>
+        <div class="succ"><b>60-day signal:</b> one customer unblocked, one reusable tool shipped, and a documented pattern ready to generalize.</div>
+      </div>
+
+      <div class="tpanel" data-tp="2">
+        <div class="lanes">
+          <div class="lane l1"><div class="lk">Scale</div><ul><li>Package the solution as a repeatable IP offering with a delivery guide.</li><li>Embed best practices field teams and partners can reuse.</li></ul></div>
+          <div class="lane l2"><div class="lk">Skill</div><ul><li>Run a community session skilling the field on the new asset.</li><li>Publish the AI tool/automation for broader adoption.</li></ul></div>
+          <div class="lane l3"><div class="lk">Influence</div><ul><li>Carry the customer's voice and field blockers back to Engineering.</li><li>Feed concrete roadmap input from what I saw on the ground.</li></ul></div>
+        </div>
+        <div class="succ"><b>90-day signal:</b> a customer win is now reusable IP, the field is skilled on it, and Engineering has my Voice-of-Customer input — the full loop, running.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section id="recognition">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Recognition &amp; Signals</span>
+      <h2 class="sec">Receipts</h2>
+      <p class="sec-sub">Real, on the record — the leading-before-the-title evidence a management bet is made on.</p>
+    </div>
+    <div class="grid g2 reveal">
+      <div class="sig"><div class="si" style="background:linear-gradient(160deg,var(--amber),var(--amber-deep))">★</div><div><h3>"Living the Culture" Award — Microsoft, 2023</h3><p>Recognized for how I work and lead — the culture signal that matters most for people leadership.</p></div></div>
+      <div class="sig"><div class="si" style="background:linear-gradient(160deg,var(--p4),#4a32a0)">✦</div><div><h3>Agentic AI for the field — recognized by AMER SE&amp;O</h3><p>MSX opportunity-mining agent + CERAWeek Wayfinder; candidate to extend to Corp GDC Ops.</p></div></div>
+      <div class="sig"><div class="si" style="background:linear-gradient(160deg,var(--p1),var(--blue-deep))">◎</div><div><h3>Houston Azure User Group — Co-Chair (2,900+ members)</h3><p>Technical community built and sustained — volunteer leadership and talent development without an org chart.</p></div></div>
+      <div class="sig"><div class="si" style="background:linear-gradient(160deg,var(--p2),#1f5a40)">✎</div><div><h3>M.S. Artificial Intelligence · BAM Education Liaison · Credly</h3><p>Credentialed and active in developing the next generation. <a href="https://www.credly.com/users/kim-vaddi/badges" target="_blank" rel="noopener">View badges ▸</a></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section id="close">
+  <div class="wrap">
+    <div class="reveal close">
+      <div class="bigstar">◆</div>
+      <h2>I architect the solution.<br><span class="grad">Then I build the tool that scales it to everyone.</span></h2>
+      <p>This role wants a senior architect who modernizes infrastructure, builds AI tools for efficiency, creates repeatable IP, and carries the customer's voice back to Engineering. I've been a Microsoft Cloud Solution Architect, I've migrated 15+ enterprise estates, and I ship the AI tooling most architects only talk about. This isn't a stretch — it's the role my whole career was building toward.</p>
+      <div class="sig2">Kim Vaddi · Sr Solution Engineer / former Sr Cloud Solution Architect · Houston, TX · <a href="https://www.linkedin.com/in/kimvaddi" target="_blank" rel="noopener">linkedin.com/in/kimvaddi</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="assume">
+  <b>Notes:</b> Roles and metrics are sourced from Kim Vaddi's resume (May 2025) and Microsoft profile; testimonials are quoted verbatim from HRweb "Keep doing" perspectives (Rob Schapiro, Maddy Gigli, Karri Dunn-Gruver) and AMER SE&amp;O / field-community feedback provided by Kim. Target role: Senior Cloud Solution Architect — Modernizing Infrastructure (CAIP / CE&amp;S), an IC4 individual-contributor architect role. This is a strong-match candidacy, not a management stretch. No quotes are fabricated. Draft v1 — for Kim's review.
+</div>
+<footer>◆ Candidacy artifact · Kim Vaddi · 2026</footer>
+
+<script>
+(function(){
+  "use strict";
+  var prog=document.getElementById('progress');
+  function onScroll(){var h=document.documentElement,st=h.scrollTop||document.body.scrollTop,sh=(h.scrollHeight-h.clientHeight)||1;prog.style.width=(st/sh*100)+'%';}
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('nav.links a'));
+  var secs=navLinks.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  var navIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=secs.indexOf(e.target);navLinks.forEach(function(a){a.classList.remove('active');});if(i>-1)navLinks[i].classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(function(s){if(s)navIO.observe(s);});
+
+  var PILLARS=[
+    {k:'Pillar 01 · Infrastructure Modernization',c:'var(--p1)',h:'Migrate and architect at enterprise scale',
+     tag:'Deep Windows/Linux/networking/storage migration and Azure + hybrid design — the technical core of this role.',
+     items:['15+ enterprise cloud migrations, embedding SRE principles (IBM)',
+            'Architecture Design Sessions improving system performance 40%',
+            'HA for Azure SQL &amp; AWS RDS; 50% data-platform downtime reduction',
+            'Terraform / IaC, observability, and Azure Landing Zones in production'],
+     meet:'<b>In the role:</b> I design the complex Azure + hybrid solution, then unblock the customer\'s migration when it stalls.',
+     jd:'JD: design complex global Azure &amp; hybrid solutions; deep migrations of Windows, Linux &amp; infrastructure; IaC.'},
+    {k:'Pillar 02 · AI Tools & Automation',c:'var(--p4)',h:'Build the efficiency engine, don\'t just use it',
+     tag:'The JD asks to "drive building AI tools to increase operational efficiencies." This is my edge — I ship them.',
+     items:['Built an AI agent that mines MSX for opportunities — AMER SE&O candidate for Corp GDC Ops',
+            'Shipped the CERAWeek Wayfinder agentic app in ~2 weeks — now a reusable template',
+            'M.S. in Artificial Intelligence; hands-on Foundry / agentic / APIM AI-gateway depth',
+            'Automation-first: if it\'s repeatable, I build the tool instead of redoing it'],
+     meet:'<b>In the role:</b> I turn a one-off delivery into automation and AI tooling the whole field reuses.',
+     jd:'JD: drive building AI tools to increase operational efficiencies; design &amp; build automation/solutions.'},
+    {k:'Pillar 03 · Repeatable IP & Field Skilling',c:'var(--p2)',h:'Scale one solution to the whole field',
+     tag:'Find the pattern, package it as IP, and skill the community so every team delivers it faster.',
+     items:['Co-Chair, Houston Azure User Group — 2,900+ members built and sustained',
+            'BAM Technical Education Liaison; Tex-E AI Workshop &amp; G-Unity/HISD skilling',
+            'Reusable assets: CERAWeek app templatized; demo/POC patterns shared',
+            '"Living the Culture" award (2023) — recognized for how I work and share'],
+     meet:'<b>In the role:</b> I author the repeatable IP offering and embed best practices into delivery guides for scale.',
+     jd:'JD: develop high-quality repeatable IP for scale; build skilling for field; influence through communities.'},
+    {k:'Pillar 04 · Trusted Advisor & Voice of Customer',c:'var(--p3)',h:'Earn trust, then carry it back to Engineering',
+     tag:'A technical advisor customers trust — who turns field reality into product feedback that removes blockers.',
+     items:['On the record as "trusted technical advisor" and "true partner"',
+            'Directed C-level strategy engagements; $4.6M new Azure consumption',
+            'Diagnosed WDAC/managed-device constraints in field pilots and drove workarounds',
+            'Security-by-default; candid guidance even when it points away from a SKU'],
+     meet:'<b>In the role:</b> I unblock the customer, then connect to Engineering to influence the product roadmap.',
+     jd:'JD: trusted advisor; be the Voice of the Customer; connect with Engineering to influence the roadmap.'}
+  ];
+  var pd=document.getElementById('pdetail');
+  function renderPillar(i){
+    var p=PILLARS[i];
+    pd.style.setProperty('--pc-active',p.c);
+    var lis=p.items.map(function(x){return '<li>'+x+'</li>';}).join('');
+    pd.innerHTML='<div class="pd-k" style="color:'+p.c+'">'+p.k+'</div>'+
+      '<h3>'+p.h+'</h3><div class="pd-tag">'+p.tag+'</div>'+
+      '<ul>'+lis+'</ul><div class="meet">'+p.meet+'</div><div class="jd">'+p.jd+'</div>';
+  }
+  var pbtns=Array.prototype.slice.call(document.querySelectorAll('.pillar'));
+  pbtns.forEach(function(b){b.addEventListener('click',function(){pbtns.forEach(function(x){x.classList.remove('active');});b.classList.add('active');renderPillar(+b.getAttribute('data-p'));});});
+  renderPillar(0);
+
+  document.querySelectorAll('.tt-toggle').forEach(function(btn){btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',(!open).toString());var body=btn.nextElementSibling;if(body)body.classList.toggle('open',!open);});});
+
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels=Array.prototype.slice.call(document.querySelectorAll('.tpanel'));
+  tabs.forEach(function(t){t.addEventListener('click',function(){var i=+t.getAttribute('data-t');tabs.forEach(function(x){x.classList.remove('active');});t.classList.add('active');panels.forEach(function(p){p.classList.toggle('show',+p.getAttribute('data-tp')===i);});});});
+})();
+</script>
+</body>
+</html>
